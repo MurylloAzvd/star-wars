@@ -1,58 +1,60 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-// import Routes from './routes';
 
 function App() {
 
-  // const [page, setPage] = useState(1);
-  // const [isLoaded, setIsLoaded] = useState(false);
 
   let url = "https://swapi.dev/api/people/";
-  const [pers, setPers] = useState([]);
+  const [person, setPerson] = useState([]);
+  const [currentPage, setcurrentPage] = useState(1);
+  const [nextPage, setNextPage] = useState("");
+  const [prevPage, setPrevPage] = useState("");
 
-  // function inclementaPagina() {
-  //   setIsLoaded(false);
-  //   setPage(page + 1);
-
-  //   const urlPagination = url + "?page=" + page;
-
-
-  //   fetch(urlPagination)
-  //   .then(res => res.json())
-  //   .then((result) => {
-  //     setIsLoaded(true);
-  //     if (result.count > 0) {
-  //       setPers(result.results);
-  //     }
-  //   },
-  //   (error) => {
-  //     setIsLoaded(true);
-  //   })
-  // }
   useEffect(() => {
-    fetch(url)
-      .then(res => res.json())
-      .then((result) => {
-        setPers(result.results);
-      })
+    LoadDate(url);
   }, []);
 
-  // fetch(url)
-  //   .then(res => res.json())
-  //   .then((result) => {
-  //     setPers(result.results);
-  //     console.log(pers);
-  //   })
+  function LoadDate(pageUrl) {
+
+    fetch(pageUrl)
+      .then(res => res.json())
+      .then((result) => {
+        setPerson(result.results);
+        setNextPage(result.next);
+        setPrevPage(result.previous);
+      })
+  }
+
+  function next() {
+    LoadDate(nextPage);
+    let followPage = currentPage + 1;
+    setcurrentPage(followPage);
+  }
+
+  function prev() {
+    LoadDate(prevPage);
+    let followPage = currentPage - 1;
+    setcurrentPage(followPage);
+  }
+
   
   return (
     <div>
-      <h1>Personagens</h1>
-      {console.log(pers)}
+      <h1>persononagens</h1>
       <ul>
-        {pers.map((p, index) => 
+        {person.map((p, index) => 
           <li key={index}>{p.name}</li>
         )}
       </ul>
+      
+      <nav aria-label="Navegação de página exemplo">
+        <ul className="pagination">
+        { prevPage && <li className="page-item"><a className="page-link" href="#" onClick={prev}>Anterior</a></li> }
+          <li className="page-item"><a className="page-link" href="#">{currentPage}</a></li>
+        { nextPage && <li className="page-item"><a className="page-link" href="#" onClick={next}>Próximo</a></li> }
+        </ul>
+      </nav>
+
     </div>
   );
 }
