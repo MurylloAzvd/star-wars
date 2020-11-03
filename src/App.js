@@ -2,6 +2,10 @@ import React from 'react';
 import Nav from './Nav'
 import Routes from './routes';
 import './App.css';
+import Masthead from './Masthead';
+import Person from './Person';
+import Ships from './Ships'
+import About from './About'
 
 function App() {
 
@@ -9,7 +13,10 @@ function App() {
   return (
     <div>
       <Nav />
-      <Routes />
+      <Masthead />
+      <Person />
+      <Ships />
+      <About />
     </div>
   );
 }

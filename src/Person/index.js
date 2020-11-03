@@ -39,23 +39,36 @@ function Person() {
   
     
     return (
-      <div>
-        <h1>Persononagens</h1>
-        <ul className="list-group">
-          {person.map((p, index) => 
-            <li className="list-group-item" key={index}>{p.name}</li>
-          )}
-        </ul>
-        
-        <nav aria-label="Navegação de página exemplo">
-          <ul className="pagination">
-          { prevPage && <li className="page-item"><a className="page-link" onClick={prev}>Anterior</a></li> }
-            <li className="page-item"><a className="page-link" href="#">{currentPage}</a></li>
-          { nextPage && <li className="page-item"><a className="page-link" onClick={next}>Próximo</a></li> }
-          </ul>
-        </nav>
-  
-      </div>
+      
+      // <!-- About Section-->
+      <section class="page-section bg-primary  mb-0" id="personagens">
+          <div class="container">
+              {/* <!-- About Section Heading--> */}
+              <h2 class="page-section-heading text-center text-uppercase text-white">Personagens</h2>
+              {/* <!-- Icon Divider--> */}
+              <div class="divider-custom divider-light">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                  <div class="divider-custom-line"></div>
+              </div>
+              {/* <!-- About Section Content--> */}
+              <div class="text-center">
+                  <ul className="list-group">
+                    {person.map((p, index) => 
+                      <li className="list-group-item" key={index}>{p.name}</li>
+                    )}
+                  </ul>
+                  <nav aria-label="Navegação de página exemplo">
+                    <ul className="pagination">
+                    { prevPage && <li className="page-item"><a className="page-link" onClick={prev}>Anterior</a></li> }
+                      <li className="page-item"><a className="page-link" href="#">{currentPage}</a></li>
+                    { nextPage && <li className="page-item"><a className="page-link" onClick={next}>Próximo</a></li> }
+                    </ul>
+                  </nav>
+            
+              </div>
+          </div>
+      </section>
     );
   }
   

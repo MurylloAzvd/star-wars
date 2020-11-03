@@ -1,0 +1,11 @@
+.pagination {
+    /* display: inline-flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.5rem; */
+    color: green;
+    margin-top: 20px;
+}
+nav {
+    text-align: center;
+}
