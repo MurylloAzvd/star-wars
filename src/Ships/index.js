@@ -10,7 +10,7 @@ function Ship() {
     const [currentPage, setcurrentPage] = useState(1);
     const [nextPage, setNextPage] = useState("");
     const [prevPage, setPrevPage] = useState("");
-    const [shipCurrent, setShipCurrent] = useState({});
+    const [shipCurrent, setShipCurrent] = useState(null);
   
     useEffect(() => {
       LoadDate(url);
@@ -49,22 +49,23 @@ function Ship() {
     return (
       <div>
         <h1>Naves</h1>
-        <ul>
+        <ul className="list-group">
           {ships.map((p, index) => 
-            <li key={index}><a href="#" onClick={() => loadShipDetails(p.url)}>{p.name}</a></li>
+            <li className="list-group-item" key={index}><a onClick={() => loadShipDetails(p.url)}>{p.name}</a></li>
           )}
         </ul>
         
         <nav aria-label="Navegação de página exemplo">
           <ul className="pagination">
-          { prevPage && <li className="page-item"><a className="page-link" href="#" onClick={prev}>Anterior</a></li> }
-            <li className="page-item"><a className="page-link" href="#">{currentPage}</a></li>
-          { nextPage && <li className="page-item"><a className="page-link" href="#" onClick={next}>Próximo</a></li> }
+          { prevPage && <li className="page-item"><a className="page-link"  onClick={prev}>Anterior</a></li> }
+            <li className="page-item"><a className="page-link">{currentPage}</a></li>
+          { nextPage && <li className="page-item"><a className="page-link" onClick={next}>Próximo</a></li> }
           </ul>
         </nav>
-
+        
+        { shipCurrent && 
         <div>
-            <h2>Detalhes das naves</h2>
+            <h2>Detalhes da nave:</h2>
             <ul>
                 <li>Nome: {shipCurrent.name}</li>
                 <li>Modelo: {shipCurrent.model}</li>
@@ -74,6 +75,7 @@ function Ship() {
                 <li>Velocidade Máxima: {shipCurrent.max_atmosphering_speed}</li>
             </ul>
         </div>
+        }
 
       </div>
     );

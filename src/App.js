@@ -1,15 +1,15 @@
+import React from 'react';
+import Nav from './Nav'
+import Routes from './routes';
 import './App.css';
-import Person from './Person'
-import Ship from './Ships';
 
 function App() {
 
 
-  
   return (
     <div>
-      <Person />
-      <Ship />
+      <Nav />
+      <Routes />
     </div>
   );
 }

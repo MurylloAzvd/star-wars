@@ -41,17 +41,17 @@ function Person() {
     return (
       <div>
         <h1>Persononagens</h1>
-        <ul>
+        <ul className="list-group">
           {person.map((p, index) => 
-            <li key={index}>{p.name}</li>
+            <li className="list-group-item" key={index}>{p.name}</li>
           )}
         </ul>
         
         <nav aria-label="Navegação de página exemplo">
           <ul className="pagination">
-          { prevPage && <li className="page-item"><a className="page-link" href="#" onClick={prev}>Anterior</a></li> }
+          { prevPage && <li className="page-item"><a className="page-link" onClick={prev}>Anterior</a></li> }
             <li className="page-item"><a className="page-link" href="#">{currentPage}</a></li>
-          { nextPage && <li className="page-item"><a className="page-link" href="#" onClick={next}>Próximo</a></li> }
+          { nextPage && <li className="page-item"><a className="page-link" onClick={next}>Próximo</a></li> }
           </ul>
         </nav>
   
